@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 def calculations_using_velocity_and_angle(v,θ,g, initial_height, variable_starting_height):
     vy = v * mt.sin(θ)
     vx = v * mt.cos(θ)
+    vxf = vx
 
 
     discriminant = vy**2 - 2*g*initial_height
@@ -14,7 +15,7 @@ def calculations_using_velocity_and_angle(v,θ,g, initial_height, variable_start
         t2 = (-vy - mt.sqrt(discriminant))/g
         t = max(t1,t2)
         d = vx*t
-        s = (-(vy**2))/(2*g) + initial_height
+        s = max(initial_height, (-(vy**2))/(2*g) + initial_height)
     else:
         t = (2*(-vy))/g
         d = vx*t
@@ -73,13 +74,14 @@ def calculations_with_qudratic_drag(v,theta,g,initial_height,k,dt):
         x_pos_values.append(x)
         y_pos_values.append(y)
         t_values.append(t)
-    return x_pos_values, y_pos_values, t_values
+    return x_pos_values, y_pos_values, t_values, vx, vy
 #====================================
 #Outputs
-def show_outputs(t, g, d, s, k, gravity,vxf):
-    vyf = mt.sqrt(2*g*s)
+def show_outputs(t, g, d, s, k, gravity,vxf,vyf=None):
+    if vyf is None:
+        vyf = mt.sqrt(-2*g*s)
     vf = mt.sqrt((vyf**2)+(vxf**2))
-    theta_final = mt.degrees(mt.atan(vyf/vxf))
+    theta_final = mt.degrees(mt.atan2(vyf,vxf))
     st.divider()
     st.header("Results")
     col1,col2,col3,col4 = st.columns(4)
