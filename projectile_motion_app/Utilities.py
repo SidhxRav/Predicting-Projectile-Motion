@@ -20,8 +20,9 @@ def calculations_using_velocity_and_angle(v,θ,g, initial_height, variable_start
         d = vx*t
         s = (-(vy**2))/(2*g)
     
+    
 
-    return vx, vy, t, d, s
+    return vx, vy, t, d, s, vxf
 def calculate_trajectory_path(vy, vx, t, dt, g, initial_height):
     independent_t = 0
 
@@ -75,7 +76,10 @@ def calculations_with_qudratic_drag(v,theta,g,initial_height,k,dt):
     return x_pos_values, y_pos_values, t_values
 #====================================
 #Outputs
-def show_outputs(t, g, d, s, k, gravity):
+def show_outputs(t, g, d, s, k, gravity,vxf):
+    vyf = mt.sqrt(2*g*s)
+    vf = mt.sqrt((vyf**2)+(vxf**2))
+    theta_final = mt.degrees(mt.atan(vyf/vxf))
     st.divider()
     st.header("Results")
     col1,col2,col3,col4 = st.columns(4)
@@ -88,6 +92,15 @@ def show_outputs(t, g, d, s, k, gravity):
         st.metric("Distance travelled horizontally (m):", f"{d:.2f}")
     with col4:
         st.metric("Max height reached (m):", f"{s:.2f}")
+    with col1: 
+        st.metric("Final vertical velocity (m/s):", f"{vyf:.2f}")
+    with col2: 
+        st.metric("Final horizontal velocity (m/s):", f"{vxf:.2f}")
+    with col3: 
+        st.metric("Final velocity (m/s):", f"{vf:.2f}")
+    with col1: 
+        st.metric("Angle made with ground (°):", f"{theta_final:.2f}")
+    
     if k > 0:
         st.markdown(r"$k = \dfrac{C_d \rho A}{2m}$")
         st.metric(f"k :", f"{k:.6f}")
