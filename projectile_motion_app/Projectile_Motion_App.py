@@ -74,7 +74,7 @@ with st.sidebar:
                 θdeg = st.slider("Angle made with surface (°)", 0.1, 89.9, 0.1, 0.1)
             #Initial height Sliders
             if variable_starting_height:
-                initial_height = st.slider("Elevation (m)", 0.5, 500.0, 10.0, 0.5)
+                initial_height = st.slider("Elevation (m)", 0.5, 3000.0, 10.0, 0.5)
             else: initial_height = 0
             #K value slider
             if drag_or_not and simple_or_complex_drag == "Simple":
@@ -122,7 +122,7 @@ with st.sidebar:
             else:
                 θdeg = st.number_input("Angle made with surface (°)", min_value= 0.1, max_value= 89.9, value= 0.1, step=0.1)
             if variable_starting_height:
-                initial_height = st.number_input("Elevation (m)", min_value=0.5, max_value=500.0, value= 10.0, step = 0.5)
+                initial_height = st.number_input("Elevation (m)", min_value=0.5, max_value=3000.0, value= 10.0, step = 0.5)
             else: initial_height = 0
             #K value number input
             if drag_or_not and simple_or_complex_drag == "Simple":
