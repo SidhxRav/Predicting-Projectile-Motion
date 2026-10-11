@@ -177,18 +177,17 @@ if calculate:
     if drag_or_not:
         vx, vy, t_normal, d, s, vxf = calculations_using_velocity_and_angle(v,θrad,g, initial_height, variable_starting_height)
         x_pos_values_normal, y_pos_values_normal, t_values_normal = calculate_trajectory_path(vy, vx, t_normal, dt, g, initial_height)
-        x_pos_values_quad, y_pos_values_quad, t_values_quad= calculations_with_qudratic_drag(v,θrad,g, initial_height, k, dt)
+        x_pos_values_quad, y_pos_values_quad, t_values_quad, vxf_quad, vyf_quad = calculations_with_qudratic_drag(v,θrad,g, initial_height, k, dt)
         t_quad = max(t_values_quad)
+        d_quad = x_pos_values_quad[-1]
+        s_quad = max(y_pos_values_quad)
         if compare_drag:
             show_comparison_comparison_graph(x_pos_values_quad,y_pos_values_quad,t_values_quad,x_pos_values_normal,y_pos_values_normal,t_values_normal,θrad,θdeg, initial_height)
         else:
             show_graph(x_pos_values_quad, y_pos_values_quad, t_values_quad,θrad,θdeg, initial_height)
-        show_outputs(t_quad,g,d,s,k,gravity)
+        show_outputs(t_quad,g,d_quad,s_quad,k,gravity,vxf_quad,abs(vyf_quad))
     else:
-        vx,vy,t,d,s = calculations_using_velocity_and_angle(v,θrad,g, initial_height, variable_starting_height)
+        vx,vy,t,d,s,vxf = calculations_using_velocity_and_angle(v,θrad,g, initial_height, variable_starting_height)
         x_pos_values, y_pos_values, t_values = calculate_trajectory_path(vy, vx, t, dt, g, initial_height)
         show_graph(x_pos_values, y_pos_values, t_values,θrad,θdeg, initial_height)
         show_outputs(t,g,d,s,0, gravity,vxf)
-        
-
-
