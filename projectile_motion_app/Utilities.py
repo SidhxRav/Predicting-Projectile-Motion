@@ -2,14 +2,6 @@ import streamlit as st
 import math as mt
 import plotly.graph_objects as go
 
-def Runge_Kutta_4 (accel,velo,dt):
-    f1 = accel
-    f2 = accel + (dt/2)*f1)
-    f3 = accel+(dt/2)*f2
-    f4 = accel + (dt)*f3
-
-    return velo + (dt/6)*(f1+2*f2+2*f3+f4)
-
 def calculations_using_velocity_and_angle(v,θ,g, initial_height, variable_starting_height):
     vy = v * mt.sin(θ)
     vx = v * mt.cos(θ)
@@ -68,8 +60,7 @@ def calculations_with_qudratic_drag(v,theta,g,initial_height,k,dt):
         ax = -k * absolute_v * vx
         ay = g - k * absolute_v * vy
         #Update the values of the velocites
-        Runge_Kutta_4(ax,vx,dt)
-        Runge_Kutta_4(ay,vy,dt)
+        vx += ax * dt
         vy += ay * dt
         if vx < 0:
             vx = 0
