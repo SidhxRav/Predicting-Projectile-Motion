@@ -161,7 +161,7 @@ def show_comparison_comparison_graph(x_pos_values, y_pos_values,t_values,x_pos_v
     fig = go.Figure()
     
     #Create the trajectorys
-    fig.add_trace(go.Scatter(x = x_pos_values, y = y_pos_values, mode='lines', line= dict(dash="dot", width= 3, color= "cyan"),customdata= t_values , hovertemplate= "Distance: %{x:.2f} m<br>" + "Height: %{y:.2f} m<br>" + "Time: %{customdata:.2f} s" ,name= 'With Air Resistance'))
+    fig.add_trace(go.Scatter(x = x_pos_values, y = y_pos_values, mode='lines', line= dict(dash="dot", width= 3, color= "red"),customdata= t_values , hovertemplate= "Distance: %{x:.2f} m<br>" + "Height: %{y:.2f} m<br>" + "Time: %{customdata:.2f} s" ,name= 'With Air Resistance'))
     fig.add_trace(go.Scatter(x = x_pos_values2, y = y_pos_values2, mode='lines', line= dict(dash="dot", width= 3, color= "green"),customdata= t_values2 , hovertemplate= "Distance: %{x:.2f} m<br>" + "Height: %{y:.2f} m<br>" + "Time: %{customdata:.2f} s" ,name= 'No Air resistance'))
     #Display angle
     #horizontal reference line
